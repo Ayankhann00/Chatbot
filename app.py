@@ -1,20 +1,15 @@
+
 import streamlit as st
 from bot import get_gpt_response
 
-st.set_page_config(page_title="GenAI Chatbot", layout="centered")
-st.title("🤖 GenAI Chatbot")
+st.set_page_config(page_title="AI Chatbot", layout="centered")
 
-if "history" not in st.session_state:
-    st.session_state.history = []
+st.title("🤖 ChatGPT-powered Chatbot")
 
-user_input = st.text_input("You:", key="user_input")
+user_input = st.text_input("Enter your message:", "")
 
-if st.button("Send"):
-    if user_input:
-        st.session_state.history.append(("You", user_input))
+if user_input:
+    with st.spinner("Thinking..."):
         response = get_gpt_response(user_input)
-        st.session_state.history.append(("Bot", response))
-        st.experimental_rerun()
+        st.write("**Chatbot:**", response)
 
-for sender, message in reversed(st.session_state.history):
-    st.markdown(f"**{sender}:** {message}")
