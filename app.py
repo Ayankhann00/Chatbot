@@ -1,5 +1,5 @@
 import streamlit as st
-from chatbot import get_gpt_response
+from bot import get_gpt_response
 
 st.set_page_config(page_title="GenAI Chatbot", layout="centered")
 st.title("🤖 GenAI Chatbot")
